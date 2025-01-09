@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 class NavBar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
-  const NavBar({super.key, required this.title});
 
+  const NavBar({super.key, required this.title});
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +15,13 @@ class NavBar extends StatelessWidget implements PreferredSizeWidget {
             onPressed: () {
               Navigator.pushNamed(context, "/random-joke");
             },
-            icon: const Icon(Icons.celebration))
+            icon: const Icon(Icons.emoji_emotions)),
+        IconButton(
+            onPressed: (){
+              Navigator.pushNamed(context, '/favorite-jokes', arguments: []);
+            },
+            icon: const Icon(Icons.favorite)
+        )
       ],
     );
   }

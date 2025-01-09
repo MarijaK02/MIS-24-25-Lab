@@ -1,44 +1,76 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
+import 'package:provider/provider.dart';
 import '../models/joke.dart';
+import '../providers/joke_provider.dart';
 
-class JokeCard extends StatelessWidget{
+class JokeCard extends StatefulWidget {
   final Joke joke;
-  const JokeCard({super.key, required this.joke});
+  final bool isRandomJoke; // to differentiate between random joke and list item
+
+  const JokeCard({
+    super.key,
+    required this.joke,
+    this.isRandomJoke = false,
+  });
+
+  @override
+  State<JokeCard> createState() => _JokeCardState();
+}
+
+class _JokeCardState extends State<JokeCard> {
+  bool expanded = false;
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-        child: Container(
-          margin: EdgeInsets.all(10),
-          decoration: BoxDecoration(// Background color
-            borderRadius: BorderRadius.circular(10.0), // Optional rounded corners
-            boxShadow: [
-              BoxShadow(
-                color: Colors.grey.withOpacity(0.5), // Shadow color with opacity
-                spreadRadius: 2, // How much the shadow spreads
-                blurRadius: 5, // How soft the shadow is
-                offset: Offset(2, 3), // Offset in the X and Y directions
-              ),
-            ],
-          ),
-          child: ListTile(
-            tileColor: Colors.purple[200],
-            minTileHeight: 100,
-            titleTextStyle: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.w500
+    return GestureDetector(
+      onTap: () {
+        if (!widget.isRandomJoke) {
+          setState(() {
+            expanded = !expanded;
+          });
+        }
+      },
+      child: Container(
+        margin: const EdgeInsets.all(10),
+        decoration: BoxDecoration(
+          color: Colors.purple[100],
+          borderRadius: BorderRadius.circular(15.0),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.3),
+              spreadRadius: 2,
+              blurRadius: 4,
+              offset: const Offset(2, 3),
             ),
-            subtitleTextStyle: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.w400
-            ),
-            title: Text(joke.setup),
-            subtitle: Text(joke.punchline)
+          ],
+        ),
+        child: ListTile(
+          title: Text(
+            widget.joke.setup,
+            textAlign: TextAlign.center,
+            style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
           ),
-        )
+          subtitle: expanded || widget.isRandomJoke
+              ? Text(
+            widget.joke.punchline,
+            textAlign: TextAlign.center,
+            style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w400),
+          )
+              : null,
+          contentPadding: const EdgeInsets.all(20),
+          minVerticalPadding: 15,
+          tileColor: Colors.purple[50],
+          trailing: widget.isRandomJoke ? null : IconButton(
+            icon: Icon(
+              widget.joke.isFavorite ? Icons.favorite : Icons.favorite_border,
+              color: widget.joke.isFavorite ? Colors.red : Colors.grey,
+            ),
+            onPressed: () {
+              Provider.of<JokeProvider>(context, listen: false).toggleFavorite(widget.joke.id);
+            },
+          ),
+        ),
+      ),
     );
   }
-
 }

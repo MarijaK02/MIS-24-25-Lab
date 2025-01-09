@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1057901947894",
+    "project_id": "joke-app-marija-karajano-7af45",
+    "storage_bucket": "joke-app-marija-karajano-7af45.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1057901947894:android:4c36987573debfba34f5d7",
+        "android_client_info": {
+          "package_name": "com.example.joke_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBPFfWP8x4F5b4twSz8EJNte43o2V-u7A0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

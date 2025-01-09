@@ -1,0 +1,21 @@
+{
+  "flutter": {
+    "platforms": {
+      "android": {
+        "default": {
+          "projectId": "joke-app-marija-karajano-7af45",
+          "appId": "1:1057901947894:android:4c36987573debfba34f5d7",
+          "fileOutput": "android/app/google-services.json"
+        }
+      },
+      "dart": {
+        "lib/firebase_options.dart": {
+          "projectId": "joke-app-marija-karajano-7af45",
+          "configurations": {
+            "android": "1:1057901947894:android:4c36987573debfba34f5d7"
+          }
+        }
+      }
+    }
+  }
+}

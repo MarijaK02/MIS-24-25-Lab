@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-class JokeTypesListView extends StatelessWidget{
+class JokeTypesList extends StatelessWidget {
   final List<String> jokeTypes;
 
-  JokeTypesListView({super.key, required this.jokeTypes});
+  JokeTypesList({super.key, required this.jokeTypes});
 
   final List<IconData> icons = [
     Icons.all_out,
@@ -33,24 +33,23 @@ class JokeTypesListView extends StatelessWidget{
                   child: Icon(
                     icons[index],
                     size: 100,
-                  )
-              ),
+                  )),
               Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                      jokeTypes[index],
-                      style: const TextStyle(fontWeight: FontWeight.w400)
-                  ),
-                  const Text("Click for more!", style: TextStyle(fontSize: 20),)
+                  Text(jokeTypes[index],
+                      style: const TextStyle(fontWeight: FontWeight.w400)),
+                  const Text(
+                    "Click for more!",
+                    style: TextStyle(fontSize: 20),
+                  )
                 ],
               )
             ],
           ),
           onTap: () {
-            Navigator.pushNamed(context, '/jokes',
-                arguments: jokeTypes[index]);
+            Navigator.pushNamed(context, '/jokes', arguments: jokeTypes[index]);
           },
         );
       },
